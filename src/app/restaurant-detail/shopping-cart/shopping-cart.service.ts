@@ -2,7 +2,7 @@ import {CartItem} from './cart-item.model'
 import {MenuItem} from '../menu-item/menu-item.model'
 
 export class ShoppingCartService{
-    items: CartItem[] = []
+    items: CartItem[] = [];
 
     clear(){
         this.items = []
@@ -14,6 +14,7 @@ export class ShoppingCartService{
             foundItem.quantity = foundItem.quantity +1
         }else{
             this.items.push(new CartItem(item))
+            console.log(this.items)
         }
     }
 
