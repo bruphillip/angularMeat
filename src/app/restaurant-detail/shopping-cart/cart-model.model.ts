@@ -1,6 +1,6 @@
 import {MenuItem} from '../menu-item/menu-item.model'
 
-export class CartItem{
+export class CartModel{
     constructor(public menuItem: MenuItem, public quantity: number = 1){
 
     }
