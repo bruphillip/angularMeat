@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,ApplicationRef  } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms'
+import { CommonModule } from '@angular/common'
+import { AgmCoreModule, MarkerManager, AgmDataLayer } from '@agm/core';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common'
 
 import { ROUTES } from './app.route';
 
@@ -20,6 +23,9 @@ import { MenuItemComponent } from './restaurant-detail/menu-item/menu-item.compo
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
 import { ShoppingCartService} from './restaurant-detail/shopping-cart/shopping-cart.service';
 import { OrderComponent } from './order/order.component'
+import { MapComponent } from './map/map.component'
+import { olMapComponent } from './map/olMap/olMap.component'
+import { FileSaver }  from 'file-saver'
 
 @NgModule({
   declarations: [
@@ -35,14 +41,19 @@ import { OrderComponent } from './order/order.component'
     RestaurantDetailComponent,
     ReviewsComponent,
     OrderComponent,
+    MapComponent,
+    olMapComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     RouterModule.forRoot(ROUTES),
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDODA16CQeS1jLfuXBdvTIs10sh5GO5rTk'
+    }),
   ],
-  providers: [RestaurantsService,ShoppingCartService],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},RestaurantsService,ShoppingCartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

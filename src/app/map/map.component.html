@@ -1,0 +1,13 @@
+<h1>{{ title }}</h1>
+
+<!-- this creates a google map on the page with the given lat/lng from -->(add)="shoppingCart.addItem($event)"
+<!-- the component as the initial center of the map: -->
+ <div id="map" class="map" style="height: 100%;">
+
+<!-- <agm-map id="mapa" #mapa [latitude]="lat" [longitude]="lng" style="width: 1200px;
+height: 600px;" (zoomChange)="olmap.setGmapZoom($event)" (centerChange)="olmap.setGmapCenter($event)">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map> -->
+<mt-ol #olmap style="width: 1200px;
+height: 600px; float:left;"></mt-ol>
+</div>

@@ -10,8 +10,10 @@ export class ShoppingCartService {
     constructor(){
         let listItem = JSON.parse(localStorage.getItem('myName'))
         console.log(listItem)
-        for(let list of listItem){
-                this.items.push(new CartItem(list['menuItem'], list['quantity']))
+        if(listItem != null){
+            for(let list of listItem){
+                    this.items.push(new CartItem(list['menuItem'], list['quantity']))
+            }
         }
      }
 

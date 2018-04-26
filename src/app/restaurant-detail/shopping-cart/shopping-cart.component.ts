@@ -21,6 +21,7 @@ export class ShoppingCartComponent implements OnInit {
     return this.ShoppingCartService.total()
   }
   clear(){
+    localStorage.clear()
     this.ShoppingCartService.clear()
   }
   removeItem(item: CartItem){

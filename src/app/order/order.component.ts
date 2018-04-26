@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'mt-order',
@@ -6,9 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderComponent implements OnInit {
 
-  constructor() { }
+  constructor() {  }
 
   ngOnInit() {
   }
-
 }
