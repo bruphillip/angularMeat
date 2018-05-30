@@ -8,34 +8,53 @@ export class ShoppingCartService {
     items: CartItem[] = []
     
     constructor(){
-        let listItem = JSON.parse(localStorage.getItem('myName'))
-        console.log(listItem)
+        let listItem = JSON.parse(localStorage.getItem('shoppingCart'))
+        if (!listItem)
+            return null
         for(let list of listItem){
                 this.items.push(new CartItem(list['menuItem'], list['quantity']))
         }
      }
 
     clear(){
+        localStorage.removeItem("shoppingCart");
         this.items = []
     }
  
     addItem(item:MenuItem){
         let foundItem = this.items.find((mItem) => mItem.menuItem.id === item.id)
         if(foundItem){
-            foundItem.quantity = foundItem.quantity +1
+            this.increaseQty(foundItem)
         }else{
             this.items.push(new CartItem(item))
             console.log(this.items)
         }
-        localStorage.setItem('myName',JSON.stringify(this.items))
+        localStorage.setItem('shoppingCart',JSON.stringify(this.items))
     }
 
     removeItem(item:CartItem){
         this.items.splice(this.items.indexOf(item),1)
+        localStorage.removeItem("shoppingCart");
+        // localStorage.setItem('shoppingCart',JSON.stringify(this.items))
     }
 
     total(): number{
         return this.items.map(item => item.value()).reduce((prev,value) => prev+value,0)
     }
 
+    increaseQty(item: CartItem){
+        let found =  this.items.map( (i)  => {
+            if(i.menuItem.id === item.menuItem.id){
+                i.quantity = i.quantity+1
+            }
+        })
+        localStorage.setItem('shoppingCart',JSON.stringify(this.items))
+    }
+
+    decreaseQty(item: CartItem){
+        item.quantity = item.quantity-1
+        if (item.quantity === 0){
+            this.removeItem(item)
+        }
+    }
 }
