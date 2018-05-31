@@ -27,7 +27,6 @@ export class ShoppingCartService {
             this.increaseQty(foundItem)
         }else{
             this.items.push(new CartItem(item))
-            console.log(this.items)
         }
         localStorage.setItem('shoppingCart',JSON.stringify(this.items))
     }
