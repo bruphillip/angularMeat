@@ -33,8 +33,8 @@ export class ShoppingCartService {
 
     removeItem(item:CartItem){
         this.items.splice(this.items.indexOf(item),1)
-        localStorage.removeItem("shoppingCart");
-        // localStorage.setItem('shoppingCart',JSON.stringify(this.items))
+        // localStorage.removeItem("shoppingCart");
+        localStorage.setItem('shoppingCart',JSON.stringify(this.items))
     }
 
     total(): number{
